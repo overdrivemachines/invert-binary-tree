@@ -26,6 +26,8 @@ The number of nodes in the tree is in the range [0, 100].
 
 # Solution
 
+Method 1:
+
 1. Add root node to the queue
 2. Traverse through the tree using the queue
 3. Swap left and right of each node
@@ -33,3 +35,14 @@ The number of nodes in the tree is in the range [0, 100].
 
 Runtime 4 ms Beats 33.53%
 Memory 9.7 MB Beats 46.42%
+
+Method 2:
+Recursive algorithm
+
+1. If root node is null return null
+2. Swap left and right
+3. call invertTree on the left node
+4. call invertTree on the right node
+
+Runtime 3 ms Beats 60.47%
+Memory 9.7 MB Beats 86.5%

@@ -110,7 +110,7 @@ void printTree(TreeNode *root) {
 // Traverse through the tree using the queue
 // Swap left and right of each node
 // Add the left and right to the end of the queue
-TreeNode *invertTree(TreeNode *root) {
+TreeNode *invertTree1(TreeNode *root) {
   TreeNode *node = root;
 
   // Root is null
@@ -138,6 +138,19 @@ TreeNode *invertTree(TreeNode *root) {
     q.pop();
   }
 
+  return root;
+}
+
+// Recursive Algorithm
+// Swap the left and right
+// call the invertTree function on the left
+// call the invertTree function on the right
+TreeNode *invertTree(TreeNode *root) {
+  if (root == nullptr)
+    return nullptr;
+  swap(root->left, root->right);
+  invertTree(root->left);
+  invertTree(root->right);
   return root;
 }
 
