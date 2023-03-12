@@ -23,3 +23,13 @@ Constraints:
 
 The number of nodes in the tree is in the range [0, 100].
 -100 <= Node.val <= 100
+
+# Solution
+
+1. Add root node to the queue
+2. Traverse through the tree using the queue
+3. Swap left and right of each node
+4. Add the left and right to the end of the queue
+
+Runtime 4 ms Beats 33.53%
+Memory 9.7 MB Beats 46.42%

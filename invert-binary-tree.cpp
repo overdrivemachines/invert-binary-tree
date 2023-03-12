@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -34,7 +35,7 @@ TreeNode *createTree(vector<int> input) {
   parent = root;
   bool isLeftFilled = false;
 
-  for (int i = 1; i < input.size(); i++) {
+  for (long unsigned int i = 1; i < input.size(); i++) {
     // cout << input[i] << ": ";
     if (input[i] != NULL) {
       node = new TreeNode(input[i]);
@@ -72,7 +73,72 @@ TreeNode *createTree(vector<int> input) {
   return root;
 }
 
+void printTree(TreeNode *root) {
+  TreeNode *node;
+  queue<TreeNode *> q;
+
+  if (root == nullptr)
+    return;
+
+  // Root node does not have any child nodes
+  if ((root->left == nullptr) && (root->right == nullptr)) {
+    cout << root->val << endl;
+    return;
+  }
+
+  q.push(root);
+
+  while (!q.empty()) {
+    if (q.front() == nullptr) {
+      cout << "NULL, ";
+
+    } else {
+      node = q.front();
+      cout << node->val << ", ";
+
+      q.push(node->left);
+
+      q.push(node->right);
+    }
+    q.pop();
+  }
+
+  cout << endl;
+}
+
+// Add root node to the queue
+// Traverse through the tree using the queue
+// Swap left and right of each node
+// Add the left and right to the end of the queue
 TreeNode *invertTree(TreeNode *root) {
+  TreeNode *node = root;
+
+  // Root is null
+  if (root == nullptr) {
+    return nullptr;
+  }
+
+  // Root node does not have any child nodes
+  if ((root->left == nullptr) && (root->right == nullptr)) {
+    return root;
+  }
+
+  queue<TreeNode *> q;
+
+  q.push(root);
+
+  // Traverse the tree
+  while (!q.empty()) {
+    node = q.front();
+    swap(node->left, node->right);
+    if (node->left != nullptr)
+      q.push(node->left);
+    if (node->right != nullptr)
+      q.push(node->right);
+    q.pop();
+  }
+
+  return root;
 }
 
 int main(int argc, char const *argv[]) {
@@ -88,6 +154,7 @@ int main(int argc, char const *argv[]) {
   vector<int> input8 = {25, 5, NULL, NULL, 15, 4, 20};
 
   TreeNode *root = createTree(input8);
+  printTree(root);
 
   return 0;
 }
